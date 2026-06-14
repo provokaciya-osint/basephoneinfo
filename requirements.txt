@@ -1,2 +1,4 @@
 phonenumbers
 holehe
+asyncio
+httpx
