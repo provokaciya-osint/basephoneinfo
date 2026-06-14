@@ -3,16 +3,15 @@ from phonenumbers import parse, NumberParseException
 
 
 def validate(number: str) -> bool:
-	parsed_number = parse(number)
+	try:
+		parsed_number = parse(number)
+	except NumberParseException:
+		return False
 	return is_valid(parsed_number)
 
 def main():
 	number = input("Введите номер: ")
 
-	try:
-		valid_status = validate(number)
-	except NumberParseException:
-		print("Введённый текст не является номером")
-		return
+	valid_status = validate(number)
 
 	print(f"Номер {'валиден' if valid_status else 'невалиден'}")
