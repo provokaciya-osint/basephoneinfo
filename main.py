@@ -1,29 +1,34 @@
-import phonenumbers as phone
-from os import getenv
-from modules.actions.validate import validate
+from modules import loader
 
-number = getenv("number")
+loader.load_all()
 
-ACTIONS_LIST = {
-    "Validate": {
-        "name": "Валидация номера",
-        "description": "Проверить валидность номера",
-        "action": validate
-    }
-}
+def show_main_menu():
+    modules = loader.all_modules()
+    print("\n=== BASEPHONEINFO ===")
+    print("Доступные модули:\n")
+    for i, (name, entry) in enumerate(modules.items(), 1):
+        meta = entry["meta"]
+        print(f"  {i}. {meta.get('name', name)} — {meta.get('description', '')}")
+    print("\n  0. Выход")
+    return modules
 
-def get_names():
-    names = []
-    for data in ACTIONS_LIST.values():
-        names.append(data["name"])
-    return names
+def main():
+    while True:
+        modules = show_main_menu()
+        names = list(modules.keys())
 
-def print_menu():
-    for name in get_names():
-        print(name)
+        choice = input("\n>>> ").strip()
 
-def select_action():
-    action = input(">>> ")
+        if choice == "0":
+            print("Выход.")
+            break
+        elif choice.isdigit() and 1 <= int(choice) <= len(names):
+            name = names[int(choice) - 1]
+            module = loader.get(name)
+            print()
+            module.main()
+            input("\nНажмите Enter для возврата...")
+        else:
+            print("Неверный выбор.")
 
-print_menu()
-select_action()
+main()

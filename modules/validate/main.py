@@ -3,5 +3,9 @@ from phonenumbers import parse
 
 def validate(number: str):
     parsed_number = parse(number)
-    result = is_valid(parsed_number)
-    return result
+    return is_valid(parsed_number)
+
+def main():
+    number = input("Введите номер: ")
+    valid_status = validate(number)
+    print(f"Номер {valid_status and "валиден" or "невалиден"}")

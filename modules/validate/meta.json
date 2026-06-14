@@ -1,0 +1,12 @@
+{
+	"name": "Validate",
+	"version": "1.0.0",
+	"description": "Валидация номера",
+	"author": "provokaciya",
+	"functions": [
+		{
+			"name": "validate",
+			"description": "Проверить валидность"
+		}
+	]
+}
