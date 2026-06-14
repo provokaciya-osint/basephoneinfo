@@ -31,4 +31,7 @@ def main():
         else:
             print("Неверный выбор.")
 
-main()
+try:
+    main()
+except (EOFError, KeyboardInterrupt):
+    pass
