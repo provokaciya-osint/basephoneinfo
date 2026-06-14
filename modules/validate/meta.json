@@ -1,6 +1,6 @@
 {
 	"name": "Validate",
 	"version": "1.1.0",
-	"description": "Валидация номера",
+	"description": "Проверка валидности номера",
 	"author": "provokaciya"
 }
